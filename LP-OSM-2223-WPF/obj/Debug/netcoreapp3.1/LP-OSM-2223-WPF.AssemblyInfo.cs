@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LP-OSM-2223-WPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c1c6a1c6bba09b73f1ec167d3c80e176abc8384")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e04b820aa273c84d32a277420c9dae17997a5ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("LP-OSM-2223-WPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LP-OSM-2223-WPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
