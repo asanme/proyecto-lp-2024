@@ -1,14 +1,14 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj": {}
+    "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj": {
+    "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj",
+        "projectUniqueName": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj",
         "projectName": "LP-OSM-2223-DLL",
-        "projectPath": "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj",
+        "projectPath": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj",
         "frameworks": {
           "native": {
             "projectReferences": {}
@@ -19,14 +19,14 @@
         "native": {}
       }
     },
-    "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj": {
+    "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj",
+        "projectUniqueName": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj",
         "projectName": "LP-OSM-2223-WPF",
-        "projectPath": "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj",
+        "projectPath": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-WPF\\LP-OSM-2223-WPF.csproj",
         "packagesPath": "C:\\Users\\alexs\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-WPF\\obj\\",
+        "outputPath": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-WPF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alexs\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,8 +43,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj": {
-                "projectPath": "C:\\Users\\alexs\\proyectos-c\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj"
+              "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj": {
+                "projectPath": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj"
               }
             }
           }
@@ -53,6 +53,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -84,24 +89,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.10, 3.1.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.32, 3.1.32]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.1.0, 3.1.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[3.1.0, 3.1.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -110,7 +97,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
         }
       }
     }

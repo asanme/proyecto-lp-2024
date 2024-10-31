@@ -10,152 +10,149 @@
 
 void MapaSolucio::getPdis(std::vector<PuntDeInteresBase*>& puntsInteres)
 {
-	puntsInteres = m_puntsInteres;
+	for (PuntDeInteresBase* puntInteres : m_puntsInteres)
+		puntsInteres.push_back(puntInteres);
 }
 
 void MapaSolucio::getCamins(std::vector<CamiBase*>& camins)
 {
-	camins = m_camins;
+	for (CamiBase* cami : m_camins)
+		camins.push_back(cami);
 }
 
+
+// This method is not required for this part
 void MapaSolucio::parsejaXmlElements(std::vector<XmlElement>& xmlElements)
 {
 	for (const XmlElement& xmlElement : xmlElements)
 	{
 		if (isElementInterestPoint(xmlElement))
-		{
-			for (auto child : xmlElement.fills)
-			{
-				std::vector<std::pair<std::string, std::string>> currentTag = child.second;
-				std::pair<std::string, std::string> keyTag = currentTag[0];
-				std::pair<std::string, std::string> valueTag = currentTag[1];
-
-				if (keyTag.second == "amenity" && valueTag.second == "restaurant")
-				{
-					std::cout << "------ RESTAURANTE ------\n";
-
-					Coordinate coordinates;
-					coordinates.lat = std::stod(getXmlElementAttribute(xmlElement, "lat"));
-					coordinates.lon = std::stod(getXmlElementAttribute(xmlElement, "lon"));
-
-					std::string name = getXmlElementValue(xmlElement, "name");
-					std::string cuisine = getXmlElementValue(xmlElement, "cuisine");
-					std::string wheelchair = getXmlElementValue(xmlElement, "wheelchair");
-
-					m_puntsInteres.
-						push_back(new PuntDeInteresRestaurantSolucio(coordinates, name, cuisine, wheelchair));
-
-					std::cout << "Tipo: " << cuisine << "\nSilla de ruedas: " << wheelchair;
-					std::cout << "\n---------------------------\n";
-					break;
-				}
-				else if (keyTag.second == "shop")
-				{
-					std::cout << "------ TIENDA ------\n";
-
-					Coordinate coordinates;
-					coordinates.lat = std::stod(getXmlElementAttribute(xmlElement, "lat"));
-					coordinates.lon = std::stod(getXmlElementAttribute(xmlElement, "lon"));
-
-					std::string name = getXmlElementValue(xmlElement, "name");
-					std::string shopType = getXmlElementValue(xmlElement, "shop");
-					std::string openingHours = getXmlElementValue(xmlElement, "opening_hours");
-					std::string wheelchair = getXmlElementValue(xmlElement, "wheelchair");
-
-					m_puntsInteres.push_back(
-						new PuntDeInteresBotigaSolucio(
-							coordinates,
-							name,
-							shopType,
-							openingHours,
-							wheelchair)
-					);
-
-					if (wheelchair.empty())
-					{
-						wheelchair = std::string("no");
-					}
-
-					std::cout <<
-						"Tipo: " << shopType <<
-						"\nHorario: " << openingHours <<
-						"\nSilla de ruedas: " << wheelchair;
-
-					std::cout << "\n----------------------\n";
-
-					break;
-				}
-			}
-		}
+			parseInterestPoint(xmlElement);
 		else if (isElementPath(xmlElement))
-		{
-			std::cout << "------ CAMINO ------\n";
-
-			std::vector<std::string> nodeReferences;
-			getXmlElementNodeReferences(xmlElement, nodeReferences);
-
-			std::vector<Coordinate> nodeCoordinates(nodeReferences.size());
-
-			for (const std::string& nodeId : nodeReferences)
-			{
-				nodeCoordinates.push_back(getNodeCoordinatesById(xmlElements, nodeId));
-			}
-
-			m_camins.push_back(new CamiSolucio(nodeCoordinates));
-
-			std::cout << "----------------------\n";
-		}
+			parsePath(xmlElements, xmlElement);
 	}
 }
 
+// Comprueba que el XmlElement actual contenga "highway" como clave
 bool MapaSolucio::isElementPath(const XmlElement& element)
 {
-	// Comprueba que el XmlElement actual contenga "highway" como clave
-	return element.id_element == "way" && !getXmlElementValue(element, "highway").empty();
+	return element.id_element == "way" && !getElementChildValue(element, "highway").empty();
 }
 
+// Comprueba que el elemento tenga hijos y que sea de tipo nodo
 bool MapaSolucio::isElementInterestPoint(const XmlElement& element)
 {
-	// This checks weather or not it's an actual "interest point" or just a node with nothing else inside
 	return element.id_element == "node" && !element.fills.empty();
 }
 
-void MapaSolucio::getXmlElementNodeReferences(const XmlElement& xmlElement, std::vector<std::string>& nodeReferences)
+void MapaSolucio::parseInterestPoint(const XmlElement& xmlElement)
 {
-	for (CHILD_NODE child : xmlElement.fills)
+	for (const CHILD_NODE& child : xmlElement.fills)
 	{
-		if (child.first == "nd")
+		const std::vector<std::pair<std::string, std::string>>& currentTag = child.second;
+		const std::pair<std::string, std::string>& keyTag = currentTag[0];
+		const std::pair<std::string, std::string>& valueTag = currentTag[1];
+
+		bool isRestaurant = keyTag.second == "amenity" && valueTag.second == "restaurant";
+		bool isShop = keyTag.second == "shop";
+
+		if (isRestaurant)
 		{
-			nodeReferences.push_back(child.second[0].second);
+			// std::cout << "------ RESTAURANTE ------\n";
+
+			Coordinate coordinates;
+			coordinates.lat = std::stod(getElementAttributeValue(xmlElement, "lat"));
+			coordinates.lon = std::stod(getElementAttributeValue(xmlElement, "lon"));
+
+			std::string name = getElementChildValue(xmlElement, "name");
+			std::string cuisine = getElementChildValue(xmlElement, "cuisine");
+			std::string wheelchair = getElementChildValue(xmlElement, "wheelchair");
+
+			m_puntsInteres.push_back(new PuntDeInteresRestaurantSolucio(coordinates, name, cuisine, wheelchair));
+
+			// std::cout << "Tipo: " << cuisine << "\nSilla de ruedas: " << wheelchair;
+			// std::cout << "\n---------------------------\n";
+			break;
+		}
+		else if (isShop)
+		{
+			// std::cout << "------ TIENDA ------\n";
+
+			Coordinate coordinates;
+			coordinates.lat = std::stod(getElementAttributeValue(xmlElement, "lat"));
+			coordinates.lon = std::stod(getElementAttributeValue(xmlElement, "lon"));
+
+			std::string name = getElementChildValue(xmlElement, "name");
+			std::string shopType = getElementChildValue(xmlElement, "shop");
+			std::string openingHours = getElementChildValue(xmlElement, "opening_hours");
+			std::string wheelchair = getElementChildValue(xmlElement, "wheelchair");
+
+			if (wheelchair.empty())
+				wheelchair = std::string("no");
+
+			m_puntsInteres.push_back(
+				new PuntDeInteresBotigaSolucio(coordinates, name, shopType, openingHours, wheelchair)
+			);
+
+
+			// std::cout <<
+			// 	"Tipo: " << shopType <<
+			// 	"\nHorario: " << openingHours <<
+			// 	"\nSilla de ruedas: " << wheelchair;
+			//
+			// std::cout << "\n----------------------\n";
+
+			break;
 		}
 	}
 }
 
-std::string MapaSolucio::getXmlElementValue(const XmlElement& xmlElement, const std::string& tagName)
+void MapaSolucio::parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& xmlElement)
+{
+	// std::cout << "------ CAMINO ------\n";
+
+	std::vector<std::string> nodeReferences;
+	getElementNodeReferences(xmlElement, nodeReferences);
+	std::vector<Coordinate> nodeCoordinates(nodeReferences.size());
+
+	for (const std::string& nodeId : nodeReferences)
+		nodeCoordinates.push_back(getNodeCoordinatesById(xmlElements, nodeId));
+
+	m_camins.push_back(new CamiSolucio(nodeCoordinates));
+
+	// std::cout << "----------------------\n";
+}
+
+void MapaSolucio::getElementNodeReferences(const XmlElement& xmlElement, std::vector<std::string>& nodeReferences)
+{
+	for (const CHILD_NODE& child : xmlElement.fills)
+	{
+		if (child.first == "nd")
+			nodeReferences.push_back(child.second[0].second);
+	}
+}
+
+std::string MapaSolucio::getElementChildValue(const XmlElement& xmlElement, const std::string& keyName)
 {
 	for (CHILD_NODE child : xmlElement.fills)
 	{
 		if (child.first == "tag")
 		{
-			const std::pair<std::string, std::string> keyValue = Util::kvDeTag(child.second);
-			if (keyValue.first == tagName)
-			{
+			const std::pair<std::string, std::string>& keyValue = Util::kvDeTag(child.second);
+			if (keyValue.first == keyName)
 				return keyValue.second;
-			}
 		}
 	}
 
 	return "";
 }
 
-std::string MapaSolucio::getXmlElementAttribute(const XmlElement& xmlElement, const std::string& attributeName)
+std::string MapaSolucio::getElementAttributeValue(const XmlElement& xmlElement, const std::string& attributeName)
 {
-	for (const PAIR_ATTR_VALUE child : xmlElement.atributs)
+	for (const PAIR_ATTR_VALUE& child : xmlElement.atributs)
 	{
 		if (child.first == attributeName)
-		{
 			return child.second;
-		}
 	}
 
 	return "";
@@ -164,13 +161,13 @@ std::string MapaSolucio::getXmlElementAttribute(const XmlElement& xmlElement, co
 Coordinate MapaSolucio::getNodeCoordinatesById(const std::vector<XmlElement>& xml, const std::string& nodeId)
 {
 	Coordinate nodeCoordinates = Coordinate{0, 0};
-	for (auto& xmlElement : xml)
+	for (const XmlElement& xmlElement : xml)
 	{
-		std::string currentNodeId = getXmlElementAttribute(xmlElement, "id");
+		std::string currentNodeId = getElementAttributeValue(xmlElement, "id");
 		if (currentNodeId == nodeId)
 		{
-			nodeCoordinates.lat = std::stod(getXmlElementAttribute(xmlElement, "lat"));
-			nodeCoordinates.lon = std::stod(getXmlElementAttribute(xmlElement, "lon"));
+			nodeCoordinates.lat = std::stod(getElementAttributeValue(xmlElement, "lat"));
+			nodeCoordinates.lon = std::stod(getElementAttributeValue(xmlElement, "lon"));
 			return nodeCoordinates;
 		}
 	}

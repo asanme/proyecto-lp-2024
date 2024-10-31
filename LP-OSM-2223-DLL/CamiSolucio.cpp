@@ -3,7 +3,7 @@
 
 std::vector<Coordinate> CamiSolucio::getCamiCoords()
 {
-	return stubGetCamiCoords();
+	return m_pathCoordinates;
 }
 
 // TODO Remove this method, this is a stub to see if it renders properly
