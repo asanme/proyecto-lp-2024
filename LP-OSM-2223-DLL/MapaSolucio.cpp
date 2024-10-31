@@ -11,7 +11,9 @@
 void MapaSolucio::getPdis(std::vector<PuntDeInteresBase*>& puntsInteres)
 {
 	for (PuntDeInteresBase* puntInteres : m_puntsInteres)
+	{
 		puntsInteres.push_back(puntInteres);
+	}
 }
 
 void MapaSolucio::getCamins(std::vector<CamiBase*>& camins)
@@ -31,17 +33,24 @@ void MapaSolucio::parsejaXmlElements(std::vector<XmlElement>& xmlElements)
 	}
 }
 
-// Comprueba que el XmlElement actual contenga "highway" como clave
 bool MapaSolucio::isElementPath(const XmlElement& element)
 {
-	return element.id_element == "way" && !getElementChildValue(element, "highway").empty();
+	bool containsHighway = !getElementChildValue(element, "highway").empty();
+	bool containsChildren = !element.fills.empty();
+
+	return element.id_element == "way" && containsHighway && containsChildren;
 }
 
-// TODO Comprobar que este check no es bypasseado por los nodos vacios
-// Comprueba que el elemento tenga hijos y que sea de tipo nodo
 bool MapaSolucio::isElementInterestPoint(const XmlElement& element)
 {
-	return element.id_element == "node" && !element.fills.empty();
+	bool containsName = !getElementChildValue(element, "name").empty();
+	bool containsHighway = !getElementChildValue(element, "highway").empty();
+	bool containsPublicTransport = !getElementChildValue(element, "public_transport").empty();
+	bool containsAccess = !getElementChildValue(element, "access").empty();
+	bool containsEntrance = !getElementChildValue(element, "entrance").empty();
+
+	return (element.id_element == "node" && containsName) &&
+		(!containsHighway && !containsPublicTransport && !containsAccess && !containsEntrance);
 }
 
 void MapaSolucio::parseInterestPoint(const XmlElement& xmlElement)
@@ -62,8 +71,6 @@ void MapaSolucio::parseInterestPoint(const XmlElement& xmlElement)
 
 			if (isRestaurant)
 			{
-				// std::cout << "------ RESTAURANTE ------\n";
-
 				Coordinate coordinates;
 				coordinates.lat = std::stod(getElementAttributeValue(xmlElement, "lat"));
 				coordinates.lon = std::stod(getElementAttributeValue(xmlElement, "lon"));
@@ -72,16 +79,13 @@ void MapaSolucio::parseInterestPoint(const XmlElement& xmlElement)
 				std::string cuisine = getElementChildValue(xmlElement, "cuisine");
 				std::string wheelchair = getElementChildValue(xmlElement, "wheelchair");
 
-				m_puntsInteres.push_back(new PuntDeInteresRestaurantSolucio(coordinates, name, cuisine, wheelchair));
-
-				// std::cout << "Tipo: " << cuisine << "\nSilla de ruedas: " << wheelchair;
-				// std::cout << "\n---------------------------\n";
+				m_puntsInteres.push_back(
+					new PuntDeInteresRestaurantSolucio(coordinates, name, cuisine, wheelchair)
+				);
 				break;
 			}
 			else if (isShop)
 			{
-				// std::cout << "------ TIENDA ------\n";
-
 				Coordinate coordinates;
 				coordinates.lat = std::stod(getElementAttributeValue(xmlElement, "lat"));
 				coordinates.lon = std::stod(getElementAttributeValue(xmlElement, "lon"));
@@ -98,14 +102,6 @@ void MapaSolucio::parseInterestPoint(const XmlElement& xmlElement)
 					new PuntDeInteresBotigaSolucio(coordinates, name, shopType, openingHours, wheelchair)
 				);
 
-
-				// std::cout <<
-				// 	"Tipo: " << shopType <<
-				// 	"\nHorario: " << openingHours <<
-				// 	"\nSilla de ruedas: " << wheelchair;
-				//
-				// std::cout << "\n----------------------\n";
-
 				break;
 			}
 		}
@@ -114,17 +110,16 @@ void MapaSolucio::parseInterestPoint(const XmlElement& xmlElement)
 
 void MapaSolucio::parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& xmlElement)
 {
-	// std::cout << "------ CAMINO ------\n";
-
 	std::vector<std::string> nodeReferences = getElementNodeReferences(xmlElement);
 	std::vector<Coordinate> nodeCoordinates(nodeReferences.size());
 
 	for (const std::string& nodeId : nodeReferences)
-		nodeCoordinates.push_back(getNodeCoordinatesById(xmlElements, nodeId));
+	{
+		Coordinate cords = getNodeCoordinatesById(xmlElements, nodeId);
+		nodeCoordinates.push_back(cords);
+	}
 
 	m_camins.push_back(new CamiSolucio(nodeCoordinates));
-
-	// std::cout << "----------------------\n";
 }
 
 std::vector<std::string> MapaSolucio::getElementNodeReferences(const XmlElement& xmlElement)
@@ -168,6 +163,7 @@ std::string MapaSolucio::getElementAttributeValue(const XmlElement& xmlElement, 
 Coordinate MapaSolucio::getNodeCoordinatesById(const std::vector<XmlElement>& xml, const std::string& nodeId)
 {
 	Coordinate nodeCoordinates = Coordinate{0, 0};
+
 	for (const XmlElement& xmlElement : xml)
 	{
 		std::string currentNodeId = getElementAttributeValue(xmlElement, "id");

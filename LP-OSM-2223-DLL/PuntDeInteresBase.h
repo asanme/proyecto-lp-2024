@@ -13,7 +13,7 @@ public:
 	PuntDeInteresBase();
 	PuntDeInteresBase(Coordinate coord, std::string name);
 
-	virtual std::string getName();
 	Coordinate getCoord();
+	virtual std::string getName();
 	virtual unsigned int getColor();
 };

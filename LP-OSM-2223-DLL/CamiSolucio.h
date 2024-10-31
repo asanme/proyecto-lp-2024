@@ -4,19 +4,14 @@
 class CamiSolucio : public CamiBase
 {
 public:
-	// TODO Remove this later on
-	CamiSolucio(): CamiBase(), m_pathCoordinates(stubGetCamiCoords())
+	CamiSolucio(const std::vector<Coordinate>& pathCoordinates) : CamiBase(), m_pathCoordinates(0)
 	{
-	}
-
-	CamiSolucio(const std::vector<Coordinate>& pathCoordinates) : CamiBase(), m_pathCoordinates(pathCoordinates)
-	{
+		for (Coordinate coord : pathCoordinates)
+			m_pathCoordinates.push_back(coord);
 	}
 
 	std::vector<Coordinate> getCamiCoords() override;
 
 private:
 	std::vector<Coordinate> m_pathCoordinates;
-
-	static std::vector<Coordinate> stubGetCamiCoords();
 };

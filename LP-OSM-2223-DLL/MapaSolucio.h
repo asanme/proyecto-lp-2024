@@ -25,27 +25,8 @@ private:
 	void parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& xmlElement);
 
 public:
-	// This constructor is only a stub for the real implementation
 	MapaSolucio() : MapaBase(), m_puntsInteres(std::vector<PuntDeInteresBase*>(0)), m_camins(std::vector<CamiBase*>(0))
 	{
-		auto p1 = new PuntDeInteresBotigaSolucio(
-			Coordinate{41.4918606, 2.1465411},
-			"La Millor Pastisseria",
-			"bakery",
-			"",
-			""
-		);
-
-		auto p2 = new PuntDeInteresRestaurantSolucio(
-			Coordinate{41.4902204, 2.1406477},
-			"El Millor Restaurant",
-			"regional",
-			"yes"
-		);
-
-		m_camins.push_back(new CamiSolucio());
-		m_puntsInteres.push_back(p1);
-		m_puntsInteres.push_back(p2);
 	}
 
 	void getPdis(std::vector<PuntDeInteresBase*>&) override;
