@@ -9,10 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\MapaSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaRender.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\MapaRender.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,19 +18,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MapaRender.h",
-              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaRender.h",
-              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaRender.h",
-              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaRender.h",
-              "RelativeToolTip": "LP-OSM-2223-DLL\\MapaRender.h",
-              "ViewState": "AQIAABYAAAAAAAAAAAAlwB8AAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-31T13:37:15.258Z",
+              "DocumentIndex": 0,
+              "Title": "MapaSolucio.cpp",
+              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "RelativeToolTip": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAUwBQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-31T11:45:45.592Z",
               "EditorCaption": ""
             },
             {
@@ -45,22 +41,9 @@
               "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaSolucio.h",
               "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.h",
               "RelativeToolTip": "LP-OSM-2223-DLL\\MapaSolucio.h",
-              "ViewState": "AQIAABwAAAAAAAAAAAAYwB0AAAABAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAUwCsAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-31T11:45:09.56Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MapaSolucio.cpp",
-              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "RelativeToolTip": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAhwGoAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-31T11:45:45.592Z",
               "EditorCaption": ""
             }
           ]

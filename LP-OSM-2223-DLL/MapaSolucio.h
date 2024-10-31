@@ -18,7 +18,7 @@ private:
 	static std::string getElementChildValue(const XmlElement& xmlElement, const std::string& keyName);
 	static std::string getElementAttributeValue(const XmlElement& xmlElement, const std::string& keyName);
 	static Coordinate getNodeCoordinatesById(const std::vector<XmlElement>& xml, const std::string& nodeId);
-	static void getElementNodeReferences(const XmlElement& xmlElement, std::vector<std::string>& nodeReferences);
+	static std::vector<std::string> getElementNodeReferences(const XmlElement& xmlElement);
 
 	// Parsers
 	void parseInterestPoint(const XmlElement& xmlElement);
@@ -26,7 +26,7 @@ private:
 
 public:
 	// This constructor is only a stub for the real implementation
-	MapaSolucio(): MapaBase()
+	MapaSolucio() : MapaBase(), m_puntsInteres(std::vector<PuntDeInteresBase*>(0)), m_camins(std::vector<CamiBase*>(0))
 	{
 		auto p1 = new PuntDeInteresBotigaSolucio(
 			Coordinate{41.4918606, 2.1465411},
