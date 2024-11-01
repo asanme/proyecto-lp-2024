@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\MapaSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\CamiBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\CamiBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\CamiSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\CamiSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\MapaSolucio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\PuntDeInteresBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\PuntDeInteresBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86327DF7-0D38-41A6-992E-BE1E015DF1B1}|LP-OSM-2223-DLL\\LP-OSM-2223-DLL.vcxproj|solutionrelative:LP-OSM-2223-DLL\\MapaSolucio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,72 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MapaSolucio.cpp",
-              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "RelativeToolTip": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAnwFIAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-31T11:45:45.592Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PuntDeInteresBase.h",
-              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\PuntDeInteresBase.h",
-              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\PuntDeInteresBase.h",
-              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\PuntDeInteresBase.h",
-              "RelativeToolTip": "LP-OSM-2223-DLL\\PuntDeInteresBase.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-31T19:47:01.099Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CamiSolucio.h",
-              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\CamiSolucio.h",
-              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\CamiSolucio.h",
-              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\CamiSolucio.h",
-              "RelativeToolTip": "LP-OSM-2223-DLL\\CamiSolucio.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-31T14:51:35.67Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CamiBase.h",
-              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\CamiBase.h",
-              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\CamiBase.h",
-              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\CamiBase.h",
-              "RelativeToolTip": "LP-OSM-2223-DLL\\CamiBase.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-31T14:46:05.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "MapaSolucio.h",
               "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.h",
               "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaSolucio.h",
               "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.h",
               "RelativeToolTip": "LP-OSM-2223-DLL\\MapaSolucio.h",
-              "ViewState": "AQIAAAIAAAAAAAAAAAD4vxIAAAArAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-31T14:42:06.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MapaSolucio.cpp",
+              "DocumentMoniker": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "RelativeDocumentMoniker": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "ToolTip": "C:\\Users\\alexs\\proyecto-lp\\proyecto-lp-2024\\LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "RelativeToolTip": "LP-OSM-2223-DLL\\MapaSolucio.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-31T11:45:45.592Z",
               "EditorCaption": ""
             }
           ]

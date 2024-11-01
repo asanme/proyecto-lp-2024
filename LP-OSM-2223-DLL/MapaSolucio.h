@@ -7,25 +7,38 @@
 class MapaSolucio : public MapaBase
 {
 private:
-	std::vector<PuntDeInteresBase*> m_puntsInteres;
-	std::vector<CamiBase*> m_camins;
+	// Filter node types
+	enum NodeType
+	{
+		NOT_APPLICABLE,
+		INTEREST_POINT,
+		PATH_NO_TAG,
+		PATH_NO_NAME,
+		PATH_HIGHWAY
+	};
+
+	std::vector<PuntDeInteresBase*> m_interestPoints;
+	std::vector<CamiBase*> m_paths;
 
 	// Checks
-	static bool isElementPath(const XmlElement& element);
+	static NodeType getNodeType(const XmlElement& element);
 	static bool isElementInterestPoint(const XmlElement& element);
+	static bool elementContainsTag(const XmlElement& element);
 
 	// Helper methods
-	static std::string getElementChildValue(const XmlElement& xmlElement, const std::string& keyName);
-	static std::string getElementAttributeValue(const XmlElement& xmlElement, const std::string& keyName);
+	static std::string getElementChildValue(const XmlElement& element, const std::string& keyName);
+	static std::string getElementAttributeValue(const XmlElement& element, const std::string& keyName);
 	static Coordinate getNodeCoordinatesById(const std::vector<XmlElement>& xml, const std::string& nodeId);
-	static std::vector<std::string> getElementNodeReferences(const XmlElement& xmlElement);
+	static std::vector<std::string> getElementNodeReferences(const XmlElement& element);
 
 	// Parsers
-	void parseInterestPoint(const XmlElement& xmlElement);
-	void parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& xmlElement);
+	void parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& element);
+	static PuntDeInteresBase* parseInterestPoint(const XmlElement& element);
+	static PuntDeInteresBase* parseRestaurant(const XmlElement& element);
+	static PuntDeInteresBase* parseShop(const XmlElement& element);
 
 public:
-	MapaSolucio() : MapaBase(), m_puntsInteres(std::vector<PuntDeInteresBase*>(0)), m_camins(std::vector<CamiBase*>(0))
+	MapaSolucio() : MapaBase()
 	{
 	}
 
