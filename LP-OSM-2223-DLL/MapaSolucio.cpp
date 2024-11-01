@@ -77,15 +77,15 @@ MapaSolucio::NodeType MapaSolucio::getNodeType(const XmlElement& element)
 	if (isElementInterestPoint(element))
 		return nodeType;
 
+	nodeType = NodeType::PATH_HIGHWAY;
+	if (element.id_element == "way")
+		return nodeType;
+
 	nodeType = NodeType::PATH_NO_TAG;
 	if (!elementContainsTag(element))
 		return nodeType;
 
 	nodeType = NodeType::PATH_NO_NAME;
-	if (getElementChildValue(element, "name").empty())
-		return nodeType;
-
-	nodeType = NodeType::PATH_HIGHWAY;
 	return nodeType;
 }
 
