@@ -17,8 +17,23 @@ private:
 		PATH_HIGHWAY
 	};
 
-	std::vector<PuntDeInteresBase*> m_interestPoints;
+	typedef struct
+	{
+		long long id;
+		Coordinate coordinates;
+	} EmptyNode;
+
+	typedef struct
+	{
+		std::vector<long long> nodeRef;
+	} PathNode;
+
+	// Other nodes
+	std::vector<PathNode> m_pathNodes;
+	std::vector<EmptyNode> m_emptyNodes;
+
 	std::vector<CamiBase*> m_paths;
+	std::vector<PuntDeInteresBase*> m_interestPoints;
 
 	// Checks
 	static NodeType getNodeType(const XmlElement& element);
@@ -28,11 +43,14 @@ private:
 	// Helper methods
 	static std::string getElementChildValue(const XmlElement& element, const std::string& keyName);
 	static std::string getElementAttributeValue(const XmlElement& element, const std::string& keyName);
-	static Coordinate getNodeCoordinatesById(const std::vector<XmlElement>& xml, const std::string& nodeId);
-	static std::vector<std::string> getElementNodeReferences(const XmlElement& element);
+	static std::vector<long long> getElementNodeReferences(const XmlElement& element);
+	Coordinate getCoordinateById(const long long& nodeId);
 
 	// Parsers
-	void parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& element);
+	static EmptyNode parseEmptyNode(const XmlElement& element);
+	static PathNode parsePathNode(const XmlElement& element);
+	CamiBase* parsePath(const PathNode& pathNode);
+
 	static PuntDeInteresBase* parseInterestPoint(const XmlElement& element);
 	static PuntDeInteresBase* parseRestaurant(const XmlElement& element);
 	static PuntDeInteresBase* parseShop(const XmlElement& element);

@@ -12,47 +12,61 @@
 
 void MapaSolucio::getPdis(std::vector<PuntDeInteresBase*>& interestPoints)
 {
-	for (PuntDeInteresBase* interestPoint : m_interestPoints)
-		interestPoints.push_back(interestPoint);
+	interestPoints.clear();
+	interestPoints.reserve(m_interestPoints.size());
+	auto it = m_interestPoints.begin();
+	for (; it != m_interestPoints.end(); it++)
+		interestPoints.push_back(*it);
 }
 
 void MapaSolucio::getCamins(std::vector<CamiBase*>& paths)
 {
-	for (CamiBase* path : m_paths)
-		paths.push_back(path);
+	paths.clear();
+	paths.reserve(m_paths.size());
+	auto it = m_paths.begin();
+	for (; it != m_paths.end(); it++)
+		paths.push_back(*it);
 }
 
 void MapaSolucio::parsejaXmlElements(std::vector<XmlElement>& xmlElements)
 {
+	m_interestPoints.clear();
+	m_emptyNodes.clear();
+	m_pathNodes.clear();
+	m_paths.clear();
+
 	for (const XmlElement& element : xmlElements)
 	{
 		NodeType nodeType = getNodeType(element);
 
 		switch (nodeType)
 		{
+		case NOT_APPLICABLE:
+			break;
+
 		case INTEREST_POINT:
 			m_interestPoints.push_back(parseInterestPoint(element));
 			break;
 
 		case PATH_NO_TAG:
-			break;
-
 		case PATH_NO_NAME:
+			m_emptyNodes.push_back(parseEmptyNode(element));
 			break;
 
 		case PATH_HIGHWAY:
-			break;
-
-		default:
+			m_pathNodes.push_back(parsePathNode(element));
 			break;
 		}
 	}
+
+	for (const auto& path : m_pathNodes)
+		m_paths.push_back(parsePath(path));
 }
 
 MapaSolucio::NodeType MapaSolucio::getNodeType(const XmlElement& element)
 {
 	NodeType nodeType = NodeType::NOT_APPLICABLE;
-	bool isValidElement = element.id_element == "node" || element.id_element == "way";
+	const bool isValidElement = element.id_element == "node" || element.id_element == "way";
 	if (!isValidElement)
 		return nodeType;
 
@@ -121,18 +135,31 @@ PuntDeInteresBase* MapaSolucio::parseRestaurant(const XmlElement& element)
 	return new PuntDeInteresRestaurantSolucio(coordinates, name, cuisine, wheelchair);
 }
 
-void MapaSolucio::parsePath(std::vector<XmlElement>& xmlElements, const XmlElement& element)
+MapaSolucio::EmptyNode MapaSolucio::parseEmptyNode(const XmlElement& element)
 {
-	std::vector<std::string> nodeReferences = getElementNodeReferences(element);
-	std::vector<Coordinate> nodeCoordinates(nodeReferences.size());
+	EmptyNode node{0, Coordinate{0, 0}};
 
-	for (const std::string& nodeId : nodeReferences)
-	{
-		Coordinate cords = getNodeCoordinatesById(xmlElements, nodeId);
-		nodeCoordinates.push_back(cords);
-	}
+	node.id = std::atoll(getElementAttributeValue(element, "id").c_str());
+	node.coordinates.lat = std::stod(getElementAttributeValue(element, "lat"));
+	node.coordinates.lon = std::stod(getElementAttributeValue(element, "lon"));
 
-	m_paths.push_back(new CamiSolucio(nodeCoordinates));
+	return node;
+}
+
+MapaSolucio::PathNode MapaSolucio::parsePathNode(const XmlElement& element)
+{
+	PathNode node{{}};
+	node.nodeRef = getElementNodeReferences(element);
+	return node;
+}
+
+CamiBase* MapaSolucio::parsePath(const PathNode& pathNode)
+{
+	std::vector<Coordinate> pathCoordinates(0);
+	for (const long long& nodeId : pathNode.nodeRef)
+		pathCoordinates.push_back(getCoordinateById(nodeId));
+
+	return new CamiSolucio(pathCoordinates);
 }
 
 bool MapaSolucio::isElementInterestPoint(const XmlElement& element)
@@ -158,13 +185,13 @@ bool MapaSolucio::elementContainsTag(const XmlElement& element)
 	return false;
 }
 
-std::vector<std::string> MapaSolucio::getElementNodeReferences(const XmlElement& element)
+std::vector<long long> MapaSolucio::getElementNodeReferences(const XmlElement& element)
 {
-	std::vector<std::string> references(0);
+	std::vector<long long> references(0);
 	for (const CHILD_NODE& child : element.fills)
 	{
 		if (child.first == "nd")
-			references.push_back(child.second[0].second);
+			references.push_back(std::atoll(child.second[0].second.c_str()));
 	}
 
 	return references;
@@ -196,19 +223,14 @@ std::string MapaSolucio::getElementAttributeValue(const XmlElement& element, con
 	return "";
 }
 
-Coordinate MapaSolucio::getNodeCoordinatesById(const std::vector<XmlElement>& xml, const std::string& nodeId)
+Coordinate MapaSolucio::getCoordinateById(const long long& nodeId)
 {
 	Coordinate nodeCoordinates = Coordinate{0, 0};
 
-	for (const XmlElement& xmlElement : xml)
+	for (const EmptyNode& node : m_emptyNodes)
 	{
-		std::string currentNodeId = getElementAttributeValue(xmlElement, "id");
-		if (currentNodeId == nodeId)
-		{
-			nodeCoordinates.lat = std::stod(getElementAttributeValue(xmlElement, "lat"));
-			nodeCoordinates.lon = std::stod(getElementAttributeValue(xmlElement, "lon"));
-			return nodeCoordinates;
-		}
+		if (node.id == nodeId)
+			nodeCoordinates = node.coordinates;
 	}
 
 	return nodeCoordinates;
